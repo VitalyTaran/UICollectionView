@@ -9,7 +9,9 @@ import UIKit
 
 class AlbumCollectionViewCell: UICollectionViewCell {
     
+    // MARK: - Cell ID
     
+    static let identifier = "albumCellId"
     
     // MARK: - Initialization
     
@@ -97,4 +99,3 @@ class AlbumCollectionViewCell: UICollectionViewCell {
         cellPhotosCount.text = model.numberOfPhotos
     }
 }
-
