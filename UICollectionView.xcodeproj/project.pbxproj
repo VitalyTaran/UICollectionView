@@ -7,8 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		23979308285B4F80009E5C3B /* CALayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23979307285B4F80009E5C3B /* CALayer.swift */; };
 		23BF9282285B3C5500795BF1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23BF9281285B3C5500795BF1 /* AppDelegate.swift */; };
-		23BF9284285B3C5500795BF1 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23BF9283285B3C5500795BF1 /* SceneDelegate.swift */; };
 		23BF9286285B3C5500795BF1 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23BF9285285B3C5500795BF1 /* ViewController.swift */; };
 		23BF9289285B3C5500795BF1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 23BF9287285B3C5500795BF1 /* Main.storyboard */; };
 		23BF928E285B3C5600795BF1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 23BF928C285B3C5600795BF1 /* LaunchScreen.storyboard */; };
@@ -20,9 +20,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		23979307285B4F80009E5C3B /* CALayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CALayer.swift; sourceTree = "<group>"; };
 		23BF927E285B3C5500795BF1 /* UICollectionView.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UICollectionView.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		23BF9281285B3C5500795BF1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		23BF9283285B3C5500795BF1 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		23BF9285285B3C5500795BF1 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		23BF9288285B3C5500795BF1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		23BF928D285B3C5600795BF1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -45,6 +45,39 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		23979303285B4EAE009E5C3B /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				23BF9285285B3C5500795BF1 /* ViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		23979304285B4EF9009E5C3B /* View */ = {
+			isa = PBXGroup;
+			children = (
+				23979305285B4F0F009E5C3B /* Cells */,
+				23BF929E285B471800795BF1 /* HeaderView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		23979305285B4F0F009E5C3B /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				23BF92A0285B474A00795BF1 /* AlbumCollectionViewCell.swift */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
+		23979306285B4F54009E5C3B /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				23979307285B4F80009E5C3B /* CALayer.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 		23BF9275285B3C5500795BF1 = {
 			isa = PBXGroup;
 			children = (
@@ -64,12 +97,11 @@
 		23BF9280285B3C5500795BF1 /* UICollectionView */ = {
 			isa = PBXGroup;
 			children = (
+				23979306285B4F54009E5C3B /* Extensions */,
+				23979304285B4EF9009E5C3B /* View */,
+				23979303285B4EAE009E5C3B /* Controller */,
 				23BF92A2285B477300795BF1 /* Model */,
-				23BF929E285B471800795BF1 /* HeaderView.swift */,
-				23BF92A0285B474A00795BF1 /* AlbumCollectionViewCell.swift */,
 				23BF9281285B3C5500795BF1 /* AppDelegate.swift */,
-				23BF9283285B3C5500795BF1 /* SceneDelegate.swift */,
-				23BF9285285B3C5500795BF1 /* ViewController.swift */,
 				23FB077B285B48EB005765B8 /* Assets.xcassets */,
 				23BF9287285B3C5500795BF1 /* Main.storyboard */,
 				23BF928C285B3C5600795BF1 /* LaunchScreen.storyboard */,
@@ -159,8 +191,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				23BF9286285B3C5500795BF1 /* ViewController.swift in Sources */,
+				23979308285B4F80009E5C3B /* CALayer.swift in Sources */,
 				23BF9282285B3C5500795BF1 /* AppDelegate.swift in Sources */,
-				23BF9284285B3C5500795BF1 /* SceneDelegate.swift in Sources */,
 				23BF92A4285B478C00795BF1 /* AlbumCellModel.swift in Sources */,
 				23BF92A6285B47AB00795BF1 /* AlbumCellAPI.swift in Sources */,
 				23BF929F285B471800795BF1 /* HeaderView.swift in Sources */,
