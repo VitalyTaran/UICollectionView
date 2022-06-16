@@ -11,7 +11,7 @@ class HeaderView: UICollectionReusableView {
     
     // MARK: - Header ID
     
-    static let headerId = "headerId"
+    static let headerId = Strings.headerId
     
     // MARK: - Hiding a button for certain sections
     
@@ -39,15 +39,14 @@ class HeaderView: UICollectionReusableView {
     private lazy var headerLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = .systemFont(ofSize: 22, weight: .bold)
-        label.text = "My Albums"
+        label.font = .systemFont(ofSize: Metric.labelFontSize, weight: .bold)
         return label
     }()
     
     private lazy var seeAllButton: UIButton = {
         let button = UIButton(type: .system)
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.setTitle("See All", for: .normal)
+        button.setTitle(Strings.seeAllButtonTitle, for: .normal)
         return button
     }()
     
@@ -56,7 +55,7 @@ class HeaderView: UICollectionReusableView {
     private func setupHierarchy() {
         self.addSubview(headerLabel)
         self.addSubview(seeAllButton)
-        self.layer.addBorder(edge: .top, color: .systemGray5, thickness: 1, widthAdjustment: 16, inset: 0)
+        self.layer.addBorder(edge: .top, color: .systemGray5, thickness: Metric.borderThickness, widthAdjustment: Metric.widthAdjustment, inset: .zero)
     }
     
     private func setupLayout() {
@@ -71,3 +70,5 @@ class HeaderView: UICollectionReusableView {
         headerLabel.text = title
     }
 }
+
+
