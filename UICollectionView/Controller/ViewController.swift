@@ -12,11 +12,12 @@ class ViewController: UICollectionViewController {
     // MARK: - Data models
     
     let models = AlbumCellAPI.getData()
+    let listModels = ListCellAPI.getData()
     
     // MARK: - Initialization
     
     init() {
-        super.init(collectionViewLayout: ViewController.createLayout())
+        super.init(collectionViewLayout: CollectionViewLayout.createLayout())
     }
     
     required init?(coder: NSCoder) {
@@ -32,72 +33,19 @@ class ViewController: UICollectionViewController {
         setupCollectionView()
     }
     
-    // MARK: - Collection view layout
-    
-    static func createLayout() -> UICollectionViewCompositionalLayout {
-        return UICollectionViewCompositionalLayout { (sectionNumber, env) -> NSCollectionLayoutSection? in
-            switch sectionNumber {
-            case 0:
-                let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .fractionalHeight(1))
-                let item = NSCollectionLayoutItem(layoutSize: itemSize)
-                item.contentInsets.trailing = 8
-                
-                let horizontalGroupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .fractionalHeight(0.6))
-                let containerGroupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.9), heightDimension: .estimated(350))
-                
-                let horizontalGroupOne = NSCollectionLayoutGroup.horizontal(layoutSize: horizontalGroupSize, subitem: item, count: 2)
-                let horizontalGroupTwo = NSCollectionLayoutGroup.horizontal(layoutSize: horizontalGroupSize, subitem: item, count: 2)
-                let containerGroup = NSCollectionLayoutGroup.vertical(layoutSize: containerGroupSize, subitems: [horizontalGroupOne, horizontalGroupTwo])
-                
-                containerGroup.interItemSpacing = .fixed(8)
-                
-                let section = NSCollectionLayoutSection(group: containerGroup)
-                section.orthogonalScrollingBehavior = .groupPaging
-                section.contentInsets.leading = 16
-                section.contentInsets.trailing = 16
-                section.contentInsets.bottom = 16
-                
-                section.boundarySupplementaryItems = [
-                    .init(layoutSize: .init(widthDimension: .fractionalWidth(1), heightDimension: .absolute(40)), elementKind: UICollectionView.elementKindSectionHeader, alignment: .topLeading)
-                ]
-
-                return section
-            case 1:
-                let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .fractionalHeight(1))
-                let item = NSCollectionLayoutItem(layoutSize: itemSize)
-                item.contentInsets.trailing = 8
-                
-                let horizontalGroupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.9), heightDimension: .estimated(175))
-                let horizontalGroup = NSCollectionLayoutGroup.horizontal(layoutSize: horizontalGroupSize, subitem: item, count: 2)
-                
-                let section = NSCollectionLayoutSection(group: horizontalGroup)
-                section.orthogonalScrollingBehavior = .groupPaging
-                section.contentInsets.leading = 16
-                section.contentInsets.trailing = 16
-                section.contentInsets.bottom = 56
-                section.boundarySupplementaryItems = [
-                    .init(layoutSize: .init(widthDimension: .fractionalWidth(1), heightDimension: .absolute(40)), elementKind: UICollectionView.elementKindSectionHeader, alignment: .topLeading)
-                ]
-
-                return section
-            default:
-                return nil
-            }
-        }
-    }
-    
     // MARK: - Settings
     
     private func setupView() {
         let addItem = UIBarButtonItem(systemItem: .add)
         navigationController?.navigationBar.topItem?.setLeftBarButton(addItem, animated: true)
-        navigationItem.title = "Albums"
+        navigationItem.title = Strings.navigationTitle
         navigationController?.navigationBar.prefersLargeTitles = true
     }
     
     private func setupCollectionView() {
         collectionView.backgroundColor = .white
         collectionView.register(AlbumCollectionViewCell.self, forCellWithReuseIdentifier: AlbumCollectionViewCell.identifier)
+        collectionView.register(ListCollectionViewCell.self, forCellWithReuseIdentifier: ListCollectionViewCell.identifier)
         collectionView.register(HeaderView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: HeaderView.headerId)
     }
     
@@ -105,24 +53,39 @@ class ViewController: UICollectionViewController {
     // MARK: - UICollectionViewDelegate, UICollectionViewDataSource
     
     override func numberOfSections(in collectionView: UICollectionView) -> Int {
-        2
+        return models.count + listModels.count
     }
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return models[section].count
+        switch section {
+        case 0, 1:
+            return models[section].count
+        case 2, 3:
+            return listModels[section - 2].count
+        default:
+            return 0
+        }
     }
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: AlbumCollectionViewCell.identifier, for: indexPath) as! AlbumCollectionViewCell
-        cell.configure(with: models[indexPath.section][indexPath.row])
-        
-        if indexPath.section == 0 && indexPath.row == 2 {
-            cell.isHeartHidden = false
-        } else {
-            cell.isHeartHidden = true
+        switch indexPath.section {
+        case 0, 1:
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: AlbumCollectionViewCell.identifier, for: indexPath) as! AlbumCollectionViewCell
+            cell.configure(with: models[indexPath.section][indexPath.row])
+            if indexPath.section == 0 && indexPath.row == 2 {
+                cell.isHeartHidden = false
+            } else {
+                cell.isHeartHidden = true
+            }
+            return cell
+        case 2, 3:
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ListCollectionViewCell.identifier, for: indexPath) as! ListCollectionViewCell
+            cell.configure(with: listModels[indexPath.section - 2][indexPath.row])
+            
+            return cell
+        default:
+            return UICollectionViewCell()
         }
-        
-        return cell
     }
     
     override func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
@@ -130,10 +93,20 @@ class ViewController: UICollectionViewController {
 
         switch indexPath.section {
         case 0:
-            header.configure(with: "My Albums")
+            header.configure(with: Strings.firstSectionHeader)
             header.isSeeAllHidden = false
         case 1:
-            header.configure(with: "Shared Albums")
+            header.configure(with: Strings.secondSectionHeader)
+            if models[indexPath.section].count > 2 {
+                header.isSeeAllHidden = false
+            } else {
+                header.isSeeAllHidden = true
+            }
+        case 2:
+            header.configure(with: Strings.thirdSectionHeader)
+            header.isSeeAllHidden = true
+        case 3:
+            header.configure(with: Strings.fourthSectionHeader)
             header.isSeeAllHidden = true
         default:
             break
@@ -154,22 +127,24 @@ struct ContentView_Previews: PreviewProvider {
         }
         .edgesIgnoringSafeArea(.all)
     }
-    
+
     struct Container: UIViewControllerRepresentable{
-        
+
         let vc: ViewController
-        
+
         init(_ builder: @escaping () -> ViewController) {
             vc = builder()
         }
-        
+
         func makeUIViewController(context: Context) -> UIViewController {
             UINavigationController(rootViewController: vc)
         }
-        
+
         func updateUIViewController(_ uiViewController: UIViewController, context: Context) {
-            
+
         }
     }
 }
+
+
 
