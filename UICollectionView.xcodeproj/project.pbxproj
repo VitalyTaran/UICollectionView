@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		23979308285B4F80009E5C3B /* CALayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23979307285B4F80009E5C3B /* CALayer.swift */; };
+		23979308285B4F80009E5C3B /* CALayer + Border.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23979307285B4F80009E5C3B /* CALayer + Border.swift */; };
 		2397930C285B549F009E5C3B /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2397930B285B549F009E5C3B /* Constants.swift */; };
 		2397930F285B54EE009E5C3B /* ListCellAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2397930E285B54EE009E5C3B /* ListCellAPI.swift */; };
 		23979311285B5519009E5C3B /* ListCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23979310285B5519009E5C3B /* ListCellModel.swift */; };
@@ -24,7 +24,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		23979307285B4F80009E5C3B /* CALayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CALayer.swift; sourceTree = "<group>"; };
+		23979307285B4F80009E5C3B /* CALayer + Border.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CALayer + Border.swift"; sourceTree = "<group>"; };
 		2397930B285B549F009E5C3B /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		2397930E285B54EE009E5C3B /* ListCellAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListCellAPI.swift; sourceTree = "<group>"; };
 		23979310285B5519009E5C3B /* ListCellModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListCellModel.swift; sourceTree = "<group>"; };
@@ -83,7 +83,7 @@
 		23979306285B4F54009E5C3B /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				23979307285B4F80009E5C3B /* CALayer.swift */,
+				23979307285B4F80009E5C3B /* CALayer + Border.swift */,
 				2397930B285B549F009E5C3B /* Constants.swift */,
 			);
 			path = Extensions;
@@ -235,7 +235,7 @@
 			files = (
 				23BF9286285B3C5500795BF1 /* ViewController.swift in Sources */,
 				23979311285B5519009E5C3B /* ListCellModel.swift in Sources */,
-				23979308285B4F80009E5C3B /* CALayer.swift in Sources */,
+				23979308285B4F80009E5C3B /* CALayer + Border.swift in Sources */,
 				23BF9282285B3C5500795BF1 /* AppDelegate.swift in Sources */,
 				23BF92A4285B478C00795BF1 /* AlbumCellModel.swift in Sources */,
 				23BF92A6285B47AB00795BF1 /* AlbumCellAPI.swift in Sources */,

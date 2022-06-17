@@ -12,7 +12,7 @@ extension CollectionViewLayout {
         static let fullWidthHeight: CGFloat = 1
         static let itemContentInsets: CGFloat = 8
         static let sixtyPercentHeight: CGFloat = 0.6
-        static let ninetyPercentWidth: CGFloat = 0.9
+        static let ninetyPercentWidth: CGFloat = 0.8
         static let estFirstGroupHeight: CGFloat = 350
         static let numberOfItemsInHorizontalGroup: Int = 2
         static let firstContainerItemSpacing: CGFloat = 8
